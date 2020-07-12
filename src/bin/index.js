@@ -62,4 +62,50 @@ const extractCities = async () => {
   }
 };
 
+const extractComorbidities = async () => {
+  try {
+    let pageTwo = await extractText(url, 2);
+    let numbers = [],
+      names = [];
+    pageTwo = pageTwo.replace(/ +/g, " ").split("NÃO INFORMADO").slice(-1)[0];
+
+    let regex = /\d+/gm;
+
+    while ((match = regex.exec(pageTwo)) != null) {
+      numbers.push(Number(match[0]));
+    }
+
+    regex = /[A-Za-záóçã]+/gm;
+    while ((match = regex.exec(pageTwo)) != null) {
+      names.push(match[0]);
+    }
+
+    let comorbidities = [];
+
+    for (let i = 0; i < numbers.length; ++i) {
+      if (names[i] == "Sem" || names[i] == "Doença") {
+        comorbidities.push({
+          comorbidity: names[i] + " " + names[i + 1],
+          value: numbers[i],
+        });
+        names.splice(i, 1);
+      } else {
+        comorbidities.push({
+          comorbidity: names[i],
+          value: numbers[i],
+        });
+      }
+    }
+
+    comorbidities = comorbidities.reverse();
+
+    console.log(comorbidities);
+
+    return comorbidities;
+  } catch (e) {
+    console.log("(e) => ", e);
+  }
+};
+
 extractCities();
+extractComorbidities();

@@ -1,0 +1,24 @@
+{
+  "name": "sesau-al-scraper",
+  "version": "1.0.0",
+  "description": "A simple scraper made with node.js to fetch data from sesau/AL reports",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinwsbr/sesau-al-scraper.git"
+  },
+  "keywords": [
+    "sesau",
+    "covid",
+    "scraper"
+  ],
+  "author": "Kevin Washington",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinwsbr/sesau-al-scraper/issues"
+  },
+  "homepage": "https://github.com/kevinwsbr/sesau-al-scraper#readme"
+}

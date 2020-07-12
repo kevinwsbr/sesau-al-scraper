@@ -4,7 +4,8 @@
   "description": "A simple scraper made with node.js to fetch data from sesau/AL reports",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/kevinwsbr/sesau-al-scraper/issues"
   },
-  "homepage": "https://github.com/kevinwsbr/sesau-al-scraper#readme"
+  "homepage": "https://github.com/kevinwsbr/sesau-al-scraper#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^2.4.456"
+  }
 }

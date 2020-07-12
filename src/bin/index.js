@@ -62,6 +62,34 @@ const extractCities = async () => {
   }
 };
 
+const extractStats = async () => {
+  try {
+    let values;
+    const regex = /(\d+|\d+[.,]\d+) (\d+|\d+[.,]\d+) (\d+[.,]\d+%) (\d+|\d+[.,]\d+) (\d+[.,]\d+%) (\d+|\d+[.,]\d+) (\d+[.,]\d+%) (\d+|\d+[.,]\d+) (\d+[.,]\d+%)/g;
+    let pageOne = await extractText(url, 1);
+
+    pageOne = pageOne.replace(/ +/g, " ");
+
+    while ((match = regex.exec(pageOne)) != null) {
+      values = match[0].replace(/\./g, "").trim().split(" ");
+    }
+
+    const stats = {
+      confirmedCases: Number(values[3]),
+      suspiciousCases: Number(values[1]),
+      deaths: Number(values[7]),
+      discardedCases: Number(values[5]),
+      totalCases: Number(values[0]),
+    };
+
+    console.log(stats);
+
+    return stats;
+  } catch (e) {
+    console.log("(e) => ", e);
+  }
+};
+
 const extractComorbidities = async () => {
   try {
     let pageTwo = await extractText(url, 2);
@@ -139,3 +167,4 @@ const extractAgesRange = async () => {
 extractCities();
 extractComorbidities();
 extractAgesRange();
+extractStats();

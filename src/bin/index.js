@@ -107,5 +107,35 @@ const extractComorbidities = async () => {
   }
 };
 
+const extractAgesRange = async () => {
+  try {
+    const regex = /\d+/gm;
+    let pageTwo = await extractText(url, 2);
+    let numbers = [],
+      agesRange = [];
+    let i = 0;
+    pageTwo = pageTwo.replace(/ +/g, " ").split("NÃO INFORMADO").slice(-2)[0];
+
+    while ((match = regex.exec(pageTwo)) != null && i < 18) {
+      numbers.push(Number(match[0]));
+      i++;
+    }
+
+    for (let i = 8; i > -1; i--) {
+      agesRange.push({
+        female: numbers[i],
+        male: numbers[i + 9],
+      });
+    }
+
+    console.log(agesRange);
+
+    return agesRange;
+  } catch (e) {
+    console.log("(e) => ", e);
+  }
+};
+
 extractCities();
 extractComorbidities();
+extractAgesRange();

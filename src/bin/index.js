@@ -17,7 +17,7 @@ const extractText = async (url, pageNumber) => {
 
 const extractCities = async () => {
   try {
-    let regex = /[A-Za-z’ÁáçóãÍíúéô *]+ \d+ \d+/g;
+    let regex = /[A-Za-z’ÁáçóãÍíúéô *]+ (\d+|\d+.\d+) (\d+|\d+.\d+)/g;
     let pageThree = await extractText(url, 3);
     let extracteds = [];
     let cities = [];

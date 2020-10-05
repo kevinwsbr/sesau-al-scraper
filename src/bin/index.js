@@ -1,5 +1,5 @@
 const pdfjsLib = require("pdfjs-dist/es5/build/pdf.js");
-const url = "samples/Informe-Epidemiologico-COVID-19-no-162-15-8-2020.pdf";
+const url = "samples/Informe-Epidemiologico-COVID-19-no-208-30-9-2020-1.pdf";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdf.worker.js";
 
@@ -18,13 +18,13 @@ const extractText = async (url, pageNumber) => {
 const extractCities = async () => {
   try {
     let regex = /[A-Za-z’ÁáçóãÍíúéô *]+ (\d+|\d+.\d+) (\d+|\d+.\d+)/g;
-    let pageFour = await extractText(url, 4);
+    let pageFive = await extractText(url, 5);
     let extracteds = [];
     let cities = [];
 
-    pageFour = pageFour.replace(/ +/g, " ");
+    pageFive = pageFive.replace(/ +/g, " ");
 
-    while ((match = regex.exec(pageFour)) != null) {
+    while ((match = regex.exec(pageFive)) != null) {
       extracteds.push(
         match[0].replace("BITOS CONFIRMADOS", "").replace(/[.*]/g, "").trim()
       );
